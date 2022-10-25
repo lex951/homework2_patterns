@@ -12,9 +12,9 @@ public class Pizza {
     private int price;
     private int calories;
     private Size size;
-    private List<Cheese> cheeses=new ArrayList<>();
-    private List<Protein> proteins=new ArrayList<>();
-    private List<Vegetable> vegetables=new ArrayList<>();
+    private List<Cheese> cheeses = new ArrayList<>();
+    private List<Protein> proteins = new ArrayList<>();
+    private List<Vegetable> vegetables = new ArrayList<>();
 
     public Pizza() {
     }
@@ -27,23 +27,23 @@ public class Pizza {
         this.size = size;
     }
 
-    public void addCheese(Cheese cheese){
+    public void addCheese(Cheese cheese) {
         cheeses.add(cheese);
-        price+=cheese.getPrice();
-        calories+=cheese.getCalories();
+        price += cheese.getPrice();
+        calories += cheese.getCalories();
     }
 
-    public void addProtein(Protein protein){
+    public void addProtein(Protein protein) {
         proteins.add(protein);
-        price+=protein.getPrice();
-        calories+=protein.getPrice();
+        price += protein.getPrice();
+        calories += protein.getPrice();
 
     }
 
-    public void addVegetable(Vegetable vegetable){
+    public void addVegetable(Vegetable vegetable) {
         vegetables.add(vegetable);
-        price+=vegetable.getPrice();
-        calories+=vegetable.getCalories();
+        price += vegetable.getPrice();
+        calories += vegetable.getCalories();
     }
 
     public String getName() {
@@ -55,7 +55,14 @@ public class Pizza {
     }
 
     public int getCalories() {
-        return calories;
+        int sizeCoefficient;
+        switch (size) {
+            case SMALL -> sizeCoefficient = 6;
+            case MEDIUM -> sizeCoefficient = 8;
+            case BIG -> sizeCoefficient = 10;
+            default -> sizeCoefficient = 0;
+        }
+        return calories * sizeCoefficient;
     }
 
     public Size getSize() {
